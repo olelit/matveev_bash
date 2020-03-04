@@ -1,7 +1,9 @@
 #!/bin/bash
-filename=$1
+ext=$1
 path=$2
 
-for file in $path;do
-	echo "$(basename $file)"|tee $filename
-done  
+files=$(find "$path" -type f -name "*.$ext")
+count=$(find "$path" -type f -name "*.$ext" -printf x | wc -c) 
+echo "${files}" >> "save.txt"
+echo "Всего: $count"
+
